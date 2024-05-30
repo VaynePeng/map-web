@@ -7,8 +7,8 @@ const App = () => {
   useEffect(() => {
     if (!mapRef.current) {
       const bounds = new L.LatLngBounds(
-        new L.LatLng(-49.875, 34.25),
-        new L.LatLng(-206, 221)
+        new L.LatLng(0, 0),
+        new L.LatLng(200, 160)
       )
       mapRef.current = L.map('map', {
         crs: L.CRS.Simple,
@@ -16,14 +16,19 @@ const App = () => {
         maxBounds: bounds,
         maxBoundsViscosity: 1.0
       }).setView([0, 0], 2)
+      L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
 
-      L.tileLayer('/maps/{z}_{x}_{y}.png', {
-        attribution: '&copy; David',
-        minZoom: 2,
-        maxZoom: 5,
-        noWrap: true,
-        bounds: bounds
-      }).addTo(mapRef.current)
+      const Icon = L.divIcon({
+        className: 'my-div-icon',
+        html: '<span>我的文本</span>', // 你的文本
+        iconSize: [100, 50], // 图标的大小
+      })
+
+      L.marker([88, 8], { icon: Icon })
+        .on('click', () => {
+          console.log('标签被点击了！')
+        })
+        .addTo(mapRef.current)
     }
   }, [])
 
