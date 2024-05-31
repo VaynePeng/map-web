@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.icon {
+.m-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
-.tips {
+.m-tips {
   display: inline-block;
   border: 2px solid #72400b;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.95);
   padding: 0 2px;
+  text-align: center;
 }
-.tag {
+.m-tag {
   margin-top: 5px;
   color: #ff9802;
   border: 2px solid #ff9802;
@@ -37,10 +39,42 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-  
   }
 }
-
+.m-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  position: absolute;
+  bottom: 25px;
+}
+.m-title {
+  font-weight: bold;
+  color: #333;
+}
+.m-content {
+  display: flex;
+  align-items: center;
+}
+.m-img {
+  width: 80px !important;
+  margin-right: 10px;
+}
+.m-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+p {
+  color: #666;
+}
 .iconfont {
   font-size: 12px;
 }
