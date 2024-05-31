@@ -14,17 +14,19 @@ const App = () => {
         crs: L.CRS.Simple,
         attributionControl: false,
         maxBounds: bounds,
-        maxBoundsViscosity: 1.0
+        maxBoundsViscosity: 1.0,
+        minZoom: 1,
+        maxZoom: 3
       }).setView([0, 0], 2)
       L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
 
       const Icon = L.divIcon({
         className: 'my-div-icon',
-        html: '<span>我的文本</span>', // 你的文本
-        iconSize: [100, 50], // 图标的大小
+        html: '<div class="icon"><div class="tips">测试地点</div><div class="tag"><i class="iconfont icon-18erji-2"></i></div></div>',
+        iconSize: [60, 65]
       })
 
-      L.marker([88, 8], { icon: Icon })
+      L.marker([90, 8], { icon: Icon })
         .on('click', () => {
           console.log('标签被点击了！')
         })
