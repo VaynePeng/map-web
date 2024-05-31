@@ -18,7 +18,7 @@ const markers: Marker[] = [
     lng: 90,
     width: 70,
     height: 65,
-    voice: './public/voice/界碑.mp3',
+    voice: './voice/界碑.mp3',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街界碑</div>
@@ -27,7 +27,7 @@ const markers: Marker[] = [
           <div class="m-content">
             <img
               class="m-img"
-              src="./public/文化路线/1中英街界碑.jpg"
+              src="./文化路线/1中英街界碑.jpg"
               alt="中英街界碑"
               title="中英街界碑"
             />
@@ -46,7 +46,7 @@ const markers: Marker[] = [
     lng: 88,
     width: 70,
     height: 65,
-    voice: './public/voice/历史博物馆.mp3',
+    voice: './voice/历史博物馆.mp3',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街历史博物馆</div>
@@ -55,7 +55,7 @@ const markers: Marker[] = [
           <div class="m-content">
             <img
               class="m-img"
-              src="./public/文化路线/11中英街历史博物馆.jpg"
+              src="./文化路线/11中英街历史博物馆.jpg"
               alt="中英街历史博物馆"
               title="中英街历史博物馆"
             />
@@ -74,7 +74,7 @@ const markers: Marker[] = [
     lng: 8,
     width: 70,
     height: 65,
-    voice: './public/voice/古塔公园.mp3',
+    voice: './voice/古塔公园.mp3',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街古塔公园</div>
@@ -83,7 +83,7 @@ const markers: Marker[] = [
           <div class="m-content">
             <img
               class="m-img"
-              src="./public/文化路线/13中英街古塔公园.jpg"
+              src="./文化路线/13中英街古塔公园.jpg"
               alt="中英街古塔公园"
               title="中英街古塔公园"
             />
@@ -102,7 +102,7 @@ const markers: Marker[] = [
     lng: 45,
     width: 70,
     height: 65,
-    voice: './public/voice/麦奀记.mp3',
+    voice: './voice/麦奀记.mp3',
     content: `
         <div class="m-icon">
         <div class="m-tips">麦奀记忠记</div>
@@ -111,7 +111,7 @@ const markers: Marker[] = [
           <div class="m-content">
             <img
               class="m-img"
-              src="./public/文化路线/5麦奀记.jpg"
+              src="./文化路线/5麦奀记.jpg"
               alt="麦奀记忠记"
               title="麦奀记忠记"
             />
@@ -130,7 +130,7 @@ const markers: Marker[] = [
     lng: 120,
     width: 70,
     height: 65,
-    voice: './public/voice/鱼灯舞博物馆.mp3',
+    voice: './voice/鱼灯舞博物馆.mp3',
     content: `
         <div class="m-icon">
         <div class="m-tips">鱼灯舞博物馆和鱼灯舞广场</div>
@@ -139,7 +139,7 @@ const markers: Marker[] = [
           <div class="m-content">
             <img
               class="m-img"
-              src="./public/文化路线/7鱼灯舞博物馆和鱼灯舞广场.jpg"
+              src="./文化路线/7鱼灯舞博物馆和鱼灯舞广场.jpg"
               alt="鱼灯舞博物馆和鱼灯舞广场"
               title="鱼灯舞博物馆和鱼灯舞广场"
             />
