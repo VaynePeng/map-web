@@ -8,11 +8,12 @@ interface Marker {
   lng: number
   width: number
   height: number
-  voice: string
-  content: string
+  voice?: string
+  content?: string
 }
 
-const markers: Marker[] = [
+// 景点
+const markers: Array<Marker> = [
   {
     id: 'zyjjb',
     lat: 10,
@@ -686,6 +687,174 @@ const markers: Marker[] = [
     `
   }
 ]
+// 机关单位
+const governmentMarkers: Array<Marker> = [
+  {
+    id: 'jg1',
+    lat: 40,
+    lng: 73,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">机关单位</div>
+          <div class="m-tag"><i class="iconfont icon-wujiaoxing text-red-500"></i></div>
+        </div>
+    `
+  }
+]
+// 社康中心
+const healthMarkers: Array<Marker> = [
+  {
+    id: 'skzx1',
+    lat: 58,
+    lng: 62,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">社康中心</div>
+          <div class="m-tag"><i class="iconfont icon-zhenshiguanliguanlibeifen text-blue-500"></i></div>
+        </div>
+    `
+  }
+]
+// 洗手间
+const toiletMarkers: Array<Marker> = [
+  {
+    id: 'cs1',
+    lat: 45,
+    lng: 58,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">洗手间</div>
+          <div class="m-tag"><i class="iconfont icon-cesuo text-green-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'cs2',
+    lat: 40,
+    lng: 22,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">洗手间</div>
+          <div class="m-tag"><i class="iconfont icon-cesuo text-green-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'cs3',
+    lat: 70,
+    lng: 80,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">洗手间</div>
+          <div class="m-tag"><i class="iconfont icon-cesuo text-green-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'cs4',
+    lat: 85,
+    lng: 106,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">洗手间</div>
+          <div class="m-tag"><i class="iconfont icon-cesuo text-green-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'cs5',
+    lat: 115,
+    lng: 90,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">洗手间</div>
+          <div class="m-tag"><i class="iconfont icon-cesuo text-green-500"></i></div>
+        </div>
+    `
+  }
+]
+// 自动售货机
+const vendingMachineMarkers: Array<Marker> = [
+  {
+    id: 'shj1',
+    lat: 120,
+    lng: 100,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">自动售货机</div>
+          <div class="m-tag"><i class="iconfont icon-jixiang text-indigo-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'shj2',
+    lat: 135,
+    lng: 150,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">自动售货机</div>
+          <div class="m-tag"><i class="iconfont icon-jixiang text-indigo-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'shj3',
+    lat: 135,
+    lng: 50,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">自动售货机</div>
+          <div class="m-tag"><i class="iconfont icon-jixiang text-indigo-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'shj4',
+    lat: 130,
+    lng: 40,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">自动售货机</div>
+          <div class="m-tag"><i class="iconfont icon-jixiang text-indigo-500"></i></div>
+        </div>
+    `
+  },
+  {
+    id: 'shj5',
+    lat: 125,
+    lng: 30,
+    width: 70,
+    height: 65,
+    content: `
+        <div class="m-icon">
+          <div class="m-tips">自动售货机</div>
+          <div class="m-tag"><i class="iconfont icon-jixiang text-indigo-500"></i></div>
+        </div>
+    `
+  }
+]
 
 interface Menu {
   id: string
@@ -827,8 +996,11 @@ const lineMapper = {
 
 const App = () => {
   const mapRef = useRef<Map | null>(null)
+  // 路线标记
   const layers = useRef<Array<Layer>>([])
   const markerLayers = useRef<Array<Layer>>([])
+  // 坐标点
+  const positionMarker = useRef<Array<Layer>>([])
   const [voice, setVoice] = useState('')
   // 景区介绍
   const [openIntroduceModal, setOpenIntroduceModal] = useState<boolean>(false)
@@ -906,26 +1078,57 @@ const App = () => {
       onClick: () => setOpenTeamModal(true)
     }
   ])
+  // 侧边菜单
+  interface AsideMenu {
+    id: number
+    name: string
+    icon: string
+    onClick: () => void
+  }
+  const [activeAsideMenu, setActiveAsideMenu] = useState<number>(0)
+  const asideMenu = useRef<Array<AsideMenu>>([
+    {
+      id: 0,
+      name: '全部',
+      icon: 'icon-quanbu',
+      onClick: () => {}
+    },
+    {
+      id: 1,
+      name: '机关单位',
+      icon: 'icon-wujiaoxing',
+      onClick: () => {}
+    },
+    {
+      id: 2,
+      name: '自动售货机',
+      icon: 'icon-jixiang',
+      onClick: () => {}
+    },
+    {
+      id: 3,
+      name: '洗手间',
+      icon: 'icon-cesuo',
+      onClick: () => {}
+    },
+    {
+      id: 4,
+      name: '社康中心',
+      icon: 'icon-zhenshiguanliguanlibeifen',
+      onClick: () => {}
+    }
+  ])
 
-  useEffect(() => {
-    if (!mapRef.current) {
-      const bounds = new L.LatLngBounds(
-        new L.LatLng(0, 0),
-        new L.LatLng(160, 200)
-      )
-      mapRef.current = L.map('map', {
-        crs: L.CRS.Simple,
-        attributionControl: false,
-        maxBounds: bounds,
-        maxBoundsViscosity: 1.0,
-        minZoom: 1,
-        maxZoom: 3
-      }).setView([102, 112], 3)
-      L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
-
-      // 添加标记
+  const setMarker = (type: number) => {
+    // 清空之前的标记
+    positionMarker.current.forEach((marker) => {
+      mapRef.current?.removeLayer(marker)
+    })
+    positionMarker.current = []
+    // 景区标记
+    if (type === 0) {
       markers.forEach((marker) => {
-        L.marker([marker.lat, marker.lng], {
+        const tag = L.marker([marker.lat, marker.lng], {
           icon: L.divIcon({
             className: 'my-div-icon',
             html: marker.content,
@@ -948,7 +1151,79 @@ const App = () => {
             }
           })
           .addTo(mapRef.current as Map)
+        positionMarker.current.push(tag)
       })
+    }
+    // 政府机构
+    if ([0, 1].includes(type)) {
+      governmentMarkers.forEach((marker) => {
+        const tag = L.marker([marker.lat, marker.lng], {
+          icon: L.divIcon({
+            className: 'my-div-icon',
+            html: marker.content,
+            iconSize: [marker.width, marker.height]
+          })
+        }).addTo(mapRef.current as Map)
+        positionMarker.current.push(tag)
+      })
+    }
+    // 社康中心
+    if ([0, 4].includes(type)) {
+      healthMarkers.forEach((marker) => {
+        const tag = L.marker([marker.lat, marker.lng], {
+          icon: L.divIcon({
+            className: 'my-div-icon',
+            html: marker.content,
+            iconSize: [marker.width, marker.height]
+          })
+        }).addTo(mapRef.current as Map)
+        positionMarker.current.push(tag)
+      })
+    }
+    // 洗手间
+    if ([0, 3].includes(type)) {
+      toiletMarkers.forEach((marker) => {
+        const tag = L.marker([marker.lat, marker.lng], {
+          icon: L.divIcon({
+            className: 'my-div-icon',
+            html: marker.content,
+            iconSize: [marker.width, marker.height]
+          })
+        }).addTo(mapRef.current as Map)
+        positionMarker.current.push(tag)
+      })
+    }
+    // 自动售货机
+    if ([0, 2].includes(type)) {
+      vendingMachineMarkers.forEach((marker) => {
+        const tag = L.marker([marker.lat, marker.lng], {
+          icon: L.divIcon({
+            className: 'my-div-icon',
+            html: marker.content,
+            iconSize: [marker.width, marker.height]
+          })
+        }).addTo(mapRef.current as Map)
+        positionMarker.current.push(tag)
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (!mapRef.current) {
+      const bounds = new L.LatLngBounds(
+        new L.LatLng(0, 0),
+        new L.LatLng(160, 200)
+      )
+      mapRef.current = L.map('map', {
+        crs: L.CRS.Simple,
+        attributionControl: false,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0,
+        minZoom: 1,
+        maxZoom: 3
+      }).setView([102, 112], 3)
+      L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
+      setMarker(0)
     }
   }, [])
 
@@ -1054,6 +1329,26 @@ const App = () => {
           }}
         ></li>
       </ul>
+      <aside className="fixed right-5 top-5 z-20 bg-white p-3 rounded">
+        <ul>
+          {asideMenu.current.map((menu) => (
+            <li
+              key={menu.id}
+              title={menu.name}
+              className={`cursor-pointer text-gray-400 mb-2 last:mb-0 ${
+                activeAsideMenu === menu.id ? 'text-blue-400' : ''
+              }`}
+              onClick={() => {
+                setActiveAsideMenu(menu.id)
+                setMarker(menu.id)
+                menu.onClick()
+              }}
+            >
+              <i className={`iconfont ${menu.icon} !text-2xl`}></i>
+            </li>
+          ))}
+        </ul>
+      </aside>
     </div>
   )
 }
