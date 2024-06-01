@@ -14,8 +14,8 @@ interface Marker {
 const markers: Marker[] = [
   {
     id: 'zyjjb',
-    lat: 15,
-    lng: 90,
+    lat: 10,
+    lng: 113,
     width: 70,
     height: 65,
     voice: './voice/界碑.mp3',
@@ -42,8 +42,8 @@ const markers: Marker[] = [
   },
   {
     id: 'lsbwg',
-    lat: 170,
-    lng: 88,
+    lat: 135,
+    lng: 110,
     width: 70,
     height: 65,
     voice: './voice/历史博物馆.mp3',
@@ -70,8 +70,8 @@ const markers: Marker[] = [
   },
   {
     id: 'gtgy',
-    lat: 60,
-    lng: 8,
+    lat: 48,
+    lng: 12,
     width: 70,
     height: 65,
     voice: './voice/古塔公园.mp3',
@@ -98,8 +98,8 @@ const markers: Marker[] = [
   },
   {
     id: 'mej',
-    lat: 85,
-    lng: 45,
+    lat:66,
+    lng: 55,
     width: 70,
     height: 65,
     voice: './voice/麦奀记.mp3',
@@ -126,8 +126,8 @@ const markers: Marker[] = [
   },
   {
     id: 'ydwbwg',
-    lat: 110,
-    lng: 120,
+    lat: 90,
+    lng: 148,
     width: 70,
     height: 65,
     voice: './voice/鱼灯舞博物馆.mp3',
@@ -162,7 +162,7 @@ const App = () => {
     if (!mapRef.current) {
       const bounds = new L.LatLngBounds(
         new L.LatLng(0, 0),
-        new L.LatLng(200, 160)
+        new L.LatLng(160, 200)
       )
       mapRef.current = L.map('map', {
         crs: L.CRS.Simple,
