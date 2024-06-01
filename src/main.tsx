@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 
 import 'leaflet/dist/leaflet.css'
+import 'react-responsive-modal/styles.css'
 import './assets/styles/iconfont.css'
 import './index.css'
 

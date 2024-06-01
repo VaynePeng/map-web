@@ -1,4 +1,5 @@
-import L, { Map } from 'leaflet'
+import L, { Layer, Map } from 'leaflet'
+import { Modal } from 'react-responsive-modal'
 import { useEffect, useRef, useState } from 'react'
 
 interface Marker {
@@ -686,9 +687,225 @@ const markers: Marker[] = [
   }
 ]
 
+interface Menu {
+  id: string
+  background: string
+  onClick: () => void
+}
+
+// 一共三条路线
+// 1. 购物路线
+const line1 = [
+  {
+    lat: 5,
+    lng: 100
+  },
+  {
+    lat: 45,
+    lng: 155
+  },
+  {
+    lat: 75,
+    lng: 173
+  },
+  {
+    lat: 102,
+    lng: 112
+  },
+  {
+    lat: 125,
+    lng: 145
+  },
+  {
+    lat: 135,
+    lng: 130
+  },
+  {
+    lat: 75,
+    lng: 65
+  },
+  {
+    lat: 50,
+    lng: 85
+  },
+  {
+    lat: 5,
+    lng: 90
+  }
+]
+// 2. 旅游观光路线-内地
+const line2 = [
+  {
+    lat: 5,
+    lng: 100
+  },
+  {
+    lat: 50,
+    lng: 85
+  },
+  {
+    lat: 76,
+    lng: 118
+  },
+  {
+    lat: 102,
+    lng: 112
+  },
+  {
+    lat: 135,
+    lng: 145
+  },
+  {
+    lat: 155,
+    lng: 95
+  },
+  {
+    lat: 135,
+    lng: 35
+  },
+  {
+    lat: 48,
+    lng: 12
+  },
+  {
+    lat: 5,
+    lng: 90
+  }
+]
+// 3. 旅游观光路线-香港
+const line3 = [
+  {
+    lat: 120,
+    lng: 195
+  },
+  {
+    lat: 110,
+    lng: 185
+  },
+  {
+    lat: 135,
+    lng: 145
+  },
+  {
+    lat: 155,
+    lng: 95
+  },
+  {
+    lat: 135,
+    lng: 35
+  },
+  {
+    lat: 48,
+    lng: 12
+  },
+  {
+    lat: 5,
+    lng: 90
+  },
+  {
+    lat: 45,
+    lng: 155
+  },
+  {
+    lat: 75,
+    lng: 173
+  },
+  {
+    lat: 102,
+    lng: 112
+  },
+  {
+    lat: 125,
+    lng: 145
+  }
+]
+const lineMapper = {
+  1: line1,
+  2: line2,
+  3: line3
+}
+
 const App = () => {
   const mapRef = useRef<Map | null>(null)
+  const layers = useRef<Array<Layer>>([])
+  const markerLayers = useRef<Array<Layer>>([])
   const [voice, setVoice] = useState('')
+  // 景区介绍
+  const [openIntroduceModal, setOpenIntroduceModal] = useState<boolean>(false)
+  // 路线推荐
+  const [openRouteModal, setOpenRouteModal] = useState<boolean>(false)
+  // 清空路线
+  const clearLine = () => {
+    markerLayers.current.forEach((layer) => {
+      mapRef.current?.removeLayer(layer)
+    })
+    markerLayers.current = []
+    layers.current.forEach((layer) => {
+      mapRef.current?.removeLayer(layer)
+    })
+    layers.current = []
+  }
+  // 绘制路线 动态绘制 0.3s绘制一次
+  const drawLine = (line: Array<{ lat: number; lng: number }>) => {
+    setOpenRouteModal(false)
+    if (mapRef.current) {
+      // 聚焦到第一个点
+      mapRef.current.setView([line[0].lat, line[0].lng], 1)
+      let index = 0
+      const timer = setInterval(() => {
+        if (index < line.length) {
+          const latlng = new L.LatLng(line[index].lat, line[index].lng)
+          const mark = L.circleMarker(latlng, {
+            radius: 5,
+            color: 'red'
+          }).addTo(mapRef.current as Map)
+          markerLayers.current.push(mark)
+          if (index > 0) {
+            const pre = new L.LatLng(line[index - 1].lat, line[index - 1].lng)
+            const layer = L.polyline([pre, latlng], { color: 'red' }).addTo(
+              mapRef.current as Map
+            )
+            layers.current.push(layer)
+          }
+          index++
+        } else {
+          clearInterval(timer)
+        }
+      }, 300)
+    }
+  }
+  // 我的队伍
+  const [openTeamModal, setOpenTeamModal] = useState<boolean>(false)
+  const menuList = useRef<Array<Menu>>([
+    {
+      id: 'btn_introduce',
+      background: 'url("./btn/but_introduce.png")',
+      onClick: () => setOpenIntroduceModal(true)
+    },
+    {
+      id: 'btn_line',
+      background: 'url("./btn/but_line.png")',
+      onClick: () => {
+        clearLine()
+        setOpenRouteModal(true)
+      }
+    },
+    {
+      id: 'btn_scenic',
+      background: 'url("./btn/but_scenic.png")',
+      onClick: () => {}
+    },
+    {
+      id: 'btn_shop',
+      background: 'url("./btn/but_shop.png")',
+      onClick: () => {}
+    },
+    {
+      id: 'btn_team',
+      background: 'url("./btn/but_team.png")',
+      onClick: () => setOpenTeamModal(true)
+    }
+  ])
 
   useEffect(() => {
     if (!mapRef.current) {
@@ -751,10 +968,93 @@ const App = () => {
   }, [voice])
 
   return (
-    <>
+    <div className="w-screen h-screen overflow-hidden">
       <audio className="hidden" src={voice} autoPlay={false}></audio>
-      <div id="map" className="w-screen h-screen"></div>
-    </>
+      <div id="map" className="w-screen h-screen z-10"></div>
+      {/* 介绍 */}
+      <Modal
+        open={openIntroduceModal}
+        onClose={() => setOpenIntroduceModal(false)}
+        center
+        focusTrapped={false}
+      >
+        <h2>景区介绍</h2>
+        <p>
+          各位旅客，大家好，欢迎来到中英街。您现在选择的是中英街旅游购物路线。
+          中英街拥有同根同源的深港共生文化、英杰荟萃的百年抗争文化和源远流长的客家传统文化，独具特色、交相辉映。中英街自改革开放以来逐渐成为闻名遐迩的“购物天堂”，是中国独有的“一街两制”人文历史景区，是中国历史文化名街、中国民间艺术之乡、“深圳八景”之一，是深圳市文化特色街区，更是深港民间文化交流的重要窗口
+        </p>
+      </Modal>
+      {/* 路线推荐 */}
+      <Modal
+        open={openRouteModal}
+        onClose={() => setOpenRouteModal(false)}
+        center
+        focusTrapped={false}
+      >
+        <h2>路线推荐</h2>
+        <ul className="w-[300px]">
+          <li
+            className="cursor-pointer py-2 border-b border-dashed"
+            onClick={() => drawLine(lineMapper[1])}
+          >
+            1. 购物路线
+          </li>
+          <li
+            className="cursor-pointer py-2 border-b border-dashed"
+            onClick={() => drawLine(lineMapper[2])}
+          >
+            2. 旅游观光路线-内地
+          </li>
+          <li
+            className="cursor-pointer pt-2"
+            onClick={() => drawLine(lineMapper[3])}
+          >
+            3. 旅游观光路线-香港出发
+          </li>
+        </ul>
+      </Modal>
+      {/* 我的队伍 */}
+      <Modal
+        open={openTeamModal}
+        onClose={() => setOpenTeamModal(false)}
+        center
+        focusTrapped={false}
+      >
+        <h2>我的队伍</h2>
+        <div className="w-[300px] flex flex-col items-center">
+          <i className="iconfont icon-team !text-5xl text-gray-300 mt-2"></i>
+          <p className="text-gray-300 mt-2">您还没有队伍</p>
+          <p className="text-gray-300 mt-2 text-sm">创建队伍并让伙伴加入</p>
+          <p className="text-gray-300 mt-2 text-sm">可以共享位置和聊天哦</p>
+          <button className="mt-4 bg-yellow-400 text-white px-4 py-2 rounded-md w-[250px]">
+            创建一个队伍
+          </button>
+          <p className="text-gray-300 mt-2 text-sm">或</p>
+          <button className="mt-2 bg-blue-400 text-white px-4 py-2 rounded-md w-[250px]">
+            加入一个队伍
+          </button>
+        </div>
+      </Modal>
+      <ul className="fixed bottom-5 left-5 z-20 flex">
+        {menuList.current.map((menu) => (
+          <li
+            key={menu.id}
+            className="w-12 h-12 bg-cover bg-center bg-no-repeat cursor-pointer mr-2"
+            style={{ backgroundImage: menu.background }}
+            onClick={menu.onClick}
+          ></li>
+        ))}
+      </ul>
+      <ul className="fixed bottom-5 right-5 z-20 flex">
+        <li
+          className="w-12 h-12 bg-cover bg-center bg-no-repeat cursor-pointer mr-2"
+          style={{ backgroundImage: 'url("./btn/but_position.png")' }}
+          onClick={() => {
+            mapRef.current?.setView([10, 113], 3)
+          }}
+        ></li>
+      </ul>
+    </div>
   )
 }
 
