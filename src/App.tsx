@@ -1336,7 +1336,7 @@ const App = () => {
               key={menu.id}
               title={menu.name}
               className={`cursor-pointer text-gray-400 mb-2 last:mb-0 ${
-                activeAsideMenu === menu.id ? 'text-blue-400' : ''
+                activeAsideMenu === menu.id ? '!text-blue-400' : ''
               }`}
               onClick={() => {
                 setActiveAsideMenu(menu.id)
