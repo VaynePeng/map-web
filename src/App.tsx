@@ -683,7 +683,7 @@ const markers: Marker[] = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }
 ]
 
 const App = () => {
@@ -703,7 +703,7 @@ const App = () => {
         maxBoundsViscosity: 1.0,
         minZoom: 1,
         maxZoom: 3
-      }).setView([0, 0], 2)
+      }).setView([102, 112], 3)
       L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
 
       // 添加标记
