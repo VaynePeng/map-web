@@ -1,4 +1,5 @@
 import L, { Layer, Map } from 'leaflet'
+import '@elfalem/leaflet-curve'
 import { Modal } from 'react-responsive-modal'
 import { useEffect, useRef, useState } from 'react'
 
@@ -79,15 +80,15 @@ const markers: Array<Marker> = [
     voice: './voice/古塔公园.mp3',
     content: `
         <div class="m-icon">
-        <div class="m-tips">中英街古塔公园</div>
+        <div class="m-tips">古塔公园</div>
         <div id="gtgy" class="m-body" style="display: none">
-          <div class="m-title">中英街古塔公园</div>
+          <div class="m-title">古塔公园</div>
           <div class="m-content">
             <img
               class="m-img"
               src="./文化路线/13中英街古塔公园.jpg"
-              alt="中英街古塔公园"
-              title="中英街古塔公园"
+              alt="古塔公园"
+              title="古塔公园"
             />
             <p class="m-text">
               沿着海滨栈道一直往前走300米，在不远处可以看到中英街古塔公园。在这里不仅有观海亭和听涛轩，还有我们的仿宋古塔。它是一座六角七层四十四点八米的阁式建筑。夜晚，这里,华灯璀璨、魅力无限，既是深厚历史文化名街与现代都市青春活力的交响曲，也是中英街蝶变升级浓墨重彩的精彩缩影
@@ -98,7 +99,7 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  {
+  /* {
     id: 'mej',
     lat: 66,
     lng: 55,
@@ -125,7 +126,7 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }, */
   {
     id: 'ydwbwg',
     lat: 90,
@@ -135,9 +136,9 @@ const markers: Array<Marker> = [
     voice: './voice/鱼灯舞博物馆.mp3',
     content: `
         <div class="m-icon">
-        <div class="m-tips">鱼灯舞博物馆和鱼灯舞广场</div>
+        <div class="m-tips">鱼灯舞博物馆</div>
         <div id="ydwbwg" class="m-body" style="display: none">
-          <div class="m-title">鱼灯舞博物馆和鱼灯舞广场</div>
+          <div class="m-title">鱼灯舞博物馆</div>
           <div class="m-content">
             <img
               class="m-img"
@@ -238,7 +239,7 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  {
+  /* {
     id: 'ql',
     lat: 43,
     lng: 128,
@@ -265,8 +266,8 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
-  {
+  }, */
+  /* {
     id: 'ltms',
     lat: 40,
     lng: 163,
@@ -293,8 +294,8 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
-  {
+  }, */
+  /* {
     id: 'xgsx',
     lat: 65,
     lng: 148,
@@ -321,7 +322,7 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }, */
   {
     id: 'llbh',
     lat: 60,
@@ -378,7 +379,7 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  {
+  /* {
     id: 'trt',
     lat: 75,
     lng: 186,
@@ -405,7 +406,7 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }, */
   {
     id: 'zyj',
     lat: 81,
@@ -490,7 +491,7 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  {
+  /* {
     id: 'atls',
     lat: 92,
     lng: 166,
@@ -517,7 +518,7 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }, */
   {
     id: 'zbjd',
     lat: 108,
@@ -864,47 +865,72 @@ interface Menu {
 // 1. 购物路线
 const line1 = [
   {
-    lat: 5,
-    lng: 100
-  },
-  {
-    lat: 45,
-    lng: 155
+    lat: 15,
+    lng: 110,
+    offset: -10
   },
   {
     lat: 75,
-    lng: 173
+    lng: 173,
+    offset: -10
   },
   {
-    lat: 102,
-    lng: 112
+    lat: 115,
+    lng: 170,
+    offset: -10
   },
   {
-    lat: 125,
-    lng: 145
+    lat: 128,
+    lng: 145,
+    offset: -10
   },
   {
-    lat: 135,
-    lng: 130
+    lat: 120,
+    lng: 125,
+    offset: 3
   },
   {
-    lat: 75,
-    lng: 65
+    lat: 100,
+    lng: 99,
+    offset: 3
+  },
+  {
+    lat: 93,
+    lng: 73,
+    offset: 3
+  },
+  {
+    lat: 80,
+    lng: 65,
+    offset: 3
+  },
+  {
+    lat: 65,
+    lng: 71,
+    offset: 3
   },
   {
     lat: 50,
-    lng: 85
+    lng: 85,
+    offset: 3
   },
   {
-    lat: 5,
-    lng: 90
+    lat: 15,
+    lng: 90,
+    offset: -5
   }
 ]
 // 2. 旅游观光路线-内地
 const line2 = [
   {
-    lat: 5,
-    lng: 100
+    lat: 15,
+    lng: 110,
+    offset: 10
+  },
+  {
+    lat: 32,
+    lng: 91,
+    offset: 5
   },
   {
     lat: 50,
@@ -912,78 +938,116 @@ const line2 = [
   },
   {
     lat: 76,
-    lng: 118
+    lng: 118,
+    offset: 5
   },
   {
-    lat: 102,
-    lng: 112
+    lat: 90,
+    lng: 137,
+    offset: -2
   },
   {
-    lat: 135,
-    lng: 145
+    lat: 120,
+    lng: 145,
+    offset: -8
   },
   {
-    lat: 155,
-    lng: 95
+    lat: 140,
+    lng: 101,
+    offset: 10
   },
   {
-    lat: 135,
-    lng: 35
+    lat: 127,
+    lng: 35,
+    offset: 10
+  },
+  {
+    lat: 95,
+    lng: 8,
+    offset: 10
+  },
+  {
+    lat: 67,
+    lng: 6,
+    offset: 10
   },
   {
     lat: 48,
-    lng: 12
+    lng: 12,
+    offset: 2
   },
   {
-    lat: 5,
-    lng: 90
+    lat: 31,
+    lng: 26,
+    offset: 2
+  },
+  {
+    lat: 31,
+    lng: 47,
+    offset: 2
+  },
+  {
+    lat: 15,
+    lng: 90,
+    offset: -10
   }
 ]
 // 3. 旅游观光路线-香港
 const line3 = [
   {
-    lat: 120,
-    lng: 195
+    lat: 108,
+    lng: 183,
+    offset: 2
   },
   {
-    lat: 110,
-    lng: 185
+    lat: 127,
+    lng: 144,
+    offset: -10
   },
   {
-    lat: 135,
-    lng: 145
+    lat: 145,
+    lng: 90,
+    offset: 10
   },
   {
-    lat: 155,
-    lng: 95
+    lat: 128,
+    lng: 37,
+    offset: 10
   },
   {
-    lat: 135,
-    lng: 35
+    lat: 95,
+    lng: 9,
+    offset: 10
+  },
+  {
+    lat: 68,
+    lng: 6,
+    offset: 2
   },
   {
     lat: 48,
-    lng: 12
+    lng: 12,
+    offset: 2
   },
   {
-    lat: 5,
-    lng: 90
+    lat: 30,
+    lng: 45,
+    offset: 2
+  },
+  {
+    lat: 18,
+    lng: 90,
+    offset: 2
   },
   {
     lat: 45,
-    lng: 155
+    lng: 155,
+    offset: -10
   },
   {
     lat: 75,
-    lng: 173
-  },
-  {
-    lat: 102,
-    lng: 112
-  },
-  {
-    lat: 125,
-    lng: 145
+    lng: 173,
+    offset: 10
   }
 ]
 const lineMapper = {
@@ -1016,35 +1080,65 @@ const App = () => {
     })
     layers.current = []
   }
+
+  const interVal = useRef<number | null>(null)
   // 绘制路线
-  const drawLine = (line: Array<{ lat: number; lng: number }>) => {
+  const drawLine = (
+    line: Array<{ lat: number; lng: number; offset?: number }>
+  ) => {
+    if (interVal.current) {
+      clearInterval(interVal.current)
+    }
+    // 聚焦到第一个点且缩放1
+    mapRef.current?.setView([line[0].lat, line[0].lng], 1)
+    let offset = 0
     setOpenRouteModal(false)
     if (mapRef.current) {
-      // 聚焦到第一个点
-      mapRef.current.setView([line[0].lat, line[0].lng], 1)
-      let index = 0
-      const timer = setInterval(() => {
-        if (index < line.length) {
-          const latlng = new L.LatLng(line[index].lat, line[index].lng)
-          const mark = L.circleMarker(latlng, {
-            radius: 5,
-            color: 'red'
-          }).addTo(mapRef.current as Map)
-          markerLayers.current.push(mark)
-          if (index > 0) {
-            const pre = new L.LatLng(line[index - 1].lat, line[index - 1].lng)
-            const layer = L.polyline([pre, latlng], { color: 'red' }).addTo(
-              mapRef.current as Map
-            )
-            layers.current.push(layer)
-          }
-          index++
-        } else {
-          clearInterval(timer)
+      line.forEach((element, index) => {
+        if (index > 0) {
+          setTimeout(() => {
+            const pre = line[index - 1]
+            const midPoint = {
+              lat:
+                element.offset && element.offset > 0
+                  ? (pre.lat + element.lat) / 2 + Math.abs(element.offset)
+                  : (pre.lat + element.lat) / 2,
+              lng:
+                element.offset && element.offset < 0
+                  ? (pre.lng + element.lng) / 2 + Math.abs(element.offset)
+                  : (pre.lng + element.lng) / 2
+            }
+            const pathOpts = {
+              color: 'red',
+              fill: false,
+              dashArray: '10,10',
+              dashOffset: `${offset}`
+            }
+            const path = [
+              'M',
+              [pre.lat, pre.lng],
+              'Q',
+              [midPoint.lat, midPoint.lng],
+              [element.lat, element.lng]
+            ]
+            const curve = L.curve(path, pathOpts).addTo(mapRef.current as Map)
+            layers.current.push(curve)
+          }, index * 300) // 300毫秒的延迟，可以根据需要调整
         }
-      }, 300)
+      })
+
+      interVal.current = setInterval(() => {
+        offset -= 1 // 修改这里，让 offset 每次减少1
+        layers.current.forEach((layer) => {
+          if ('setStyle' in layer) {
+            // eslint-disable-next-line no-extra-semi
+            ;(layer as L.Polyline).setStyle({ dashOffset: `${offset}` })
+          }
+        })
+      }, 100) // 更新频率，可以根据需要调整
     }
   }
+
   // 我的队伍
   const [openTeamModal, setOpenTeamModal] = useState<boolean>(false)
   const menuList = useRef<Array<Menu>>([
@@ -1219,7 +1313,9 @@ const App = () => {
       }).setView([102, 112], 3)
       L.imageOverlay('/map.svg', bounds).addTo(mapRef.current)
       setMarker(0)
-      mapRef.current.on('click', function () {
+      mapRef.current.on('click', function (e) {
+        const { lat, lng } = e.latlng
+        console.log('😊', lat, lng)
         const tips = document.querySelectorAll('.m-tips')
         if (!showTagName.current) {
           // 获取所有 .m-tips 设置 visibility
@@ -1287,19 +1383,19 @@ const App = () => {
             className="cursor-pointer py-2 border-b border-dashed"
             onClick={() => drawLine(lineMapper[1])}
           >
-            1. 购物路线
+            1. 中英街购物路线
           </li>
           <li
             className="cursor-pointer py-2 border-b border-dashed"
             onClick={() => drawLine(lineMapper[2])}
           >
-            2. 旅游观光路线-内地
+            2. 中英街观光路线
           </li>
           <li
             className="cursor-pointer pt-2"
             onClick={() => drawLine(lineMapper[3])}
           >
-            3. 旅游观光路线-香港出发
+            3. 中英街观光路线（香港卡口）
           </li>
         </ul>
       </Modal>
