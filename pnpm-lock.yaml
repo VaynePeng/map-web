@@ -11,6 +11,9 @@ dependencies:
   leaflet:
     specifier: ^1.9.4
     version: 1.9.4
+  leaflet-curve:
+    specifier: ^1.0.0
+    version: 1.0.0
   react:
     specifier: ^18.2.0
     version: 18.3.1
@@ -1734,6 +1737,10 @@ packages:
     dependencies:
       json-buffer: 3.0.1
     dev: true
+
+  /leaflet-curve@1.0.0:
+    resolution: {integrity: sha512-PKte9+qVl3ZVF/90V06wmKZCTUdx0Tz20/SQ1iqlq5RamDUQVGesYaQp4g82Kw+qR5troFs/KFoLlqcxtjNE0Q==}
+    dev: false
 
   /leaflet@1.9.4:
     resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}

@@ -16,7 +16,7 @@ interface Marker {
 const markers: Array<Marker> = [
   {
     id: 'zyjjb',
-    lat: 10,
+    lat: 20,
     lng: 113,
     width: 70,
     height: 65,
@@ -44,7 +44,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'lsbwg',
-    lat: 135,
+    lat: 130,
     lng: 110,
     width: 70,
     height: 65,
@@ -72,8 +72,8 @@ const markers: Array<Marker> = [
   },
   {
     id: 'gtgy',
-    lat: 48,
-    lng: 12,
+    lat: 52,
+    lng: 15,
     width: 70,
     height: 65,
     voice: './voice/古塔公园.mp3',
@@ -156,7 +156,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'gjxq',
-    lat: 18,
+    lat: 25,
     lng: 105,
     width: 70,
     height: 65,
@@ -184,7 +184,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'qtj',
-    lat: 30,
+    lat: 36,
     lng: 90,
     width: 70,
     height: 65,
@@ -212,7 +212,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'lj',
-    lat: 30,
+    lat: 35,
     lng: 105,
     width: 70,
     height: 65,
@@ -548,7 +548,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'whq',
-    lat: 140,
+    lat: 130,
     lng: 165,
     width: 70,
     height: 65,
@@ -604,7 +604,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'thg',
-    lat: 102,
+    lat: 98,
     lng: 112,
     width: 70,
     height: 65,
@@ -632,7 +632,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'jsz',
-    lat: 135,
+    lat: 128,
     lng: 122,
     width: 70,
     height: 65,
@@ -660,7 +660,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'hbzd',
-    lat: 155,
+    lat: 145,
     lng: 95,
     width: 70,
     height: 65,
@@ -691,13 +691,12 @@ const markers: Array<Marker> = [
 const governmentMarkers: Array<Marker> = [
   {
     id: 'jg1',
-    lat: 40,
-    lng: 73,
+    lat: 41,
+    lng: 74,
     width: 70,
     height: 65,
     content: `
         <div class="m-icon">
-          <div class="m-tips">机关单位</div>
           <div class="m-tag"><i class="iconfont icon-wujiaoxing text-red-500"></i></div>
         </div>
     `
@@ -713,7 +712,6 @@ const healthMarkers: Array<Marker> = [
     height: 65,
     content: `
         <div class="m-icon">
-          <div class="m-tips">社康中心</div>
           <div class="m-tag"><i class="iconfont icon-zhenshiguanliguanlibeifen text-blue-500"></i></div>
         </div>
     `
@@ -791,7 +789,7 @@ const toiletMarkers: Array<Marker> = [
 const vendingMachineMarkers: Array<Marker> = [
   {
     id: 'shj1',
-    lat: 120,
+    lat: 118,
     lng: 100,
     width: 70,
     height: 65,
@@ -804,7 +802,7 @@ const vendingMachineMarkers: Array<Marker> = [
   },
   {
     id: 'shj2',
-    lat: 135,
+    lat: 125,
     lng: 150,
     width: 70,
     height: 65,
@@ -995,6 +993,7 @@ const lineMapper = {
 }
 
 const App = () => {
+  const showTagName = useRef<boolean>(false)
   const mapRef = useRef<Map | null>(null)
   // 路线标记
   const layers = useRef<Array<Layer>>([])
@@ -1017,7 +1016,7 @@ const App = () => {
     })
     layers.current = []
   }
-  // 绘制路线 动态绘制 0.3s绘制一次
+  // 绘制路线
   const drawLine = (line: Array<{ lat: number; lng: number }>) => {
     setOpenRouteModal(false)
     if (mapRef.current) {
@@ -1071,17 +1070,13 @@ const App = () => {
       id: 'btn_shop',
       background: 'url("./btn/but_shop.png")',
       onClick: () => {}
-    },
-    {
-      id: 'btn_team',
-      background: 'url("./btn/but_team.png")',
-      onClick: () => setOpenTeamModal(true)
     }
+    /*  */
   ])
   // 侧边菜单
   interface AsideMenu {
     id: number
-    name: string
+    name?: string
     icon: string
     onClick: () => void
   }
@@ -1181,7 +1176,7 @@ const App = () => {
       })
     }
     // 洗手间
-    if ([0, 3].includes(type)) {
+    if ([3].includes(type)) {
       toiletMarkers.forEach((marker) => {
         const tag = L.marker([marker.lat, marker.lng], {
           icon: L.divIcon({
@@ -1194,7 +1189,7 @@ const App = () => {
       })
     }
     // 自动售货机
-    if ([0, 2].includes(type)) {
+    if ([2].includes(type)) {
       vendingMachineMarkers.forEach((marker) => {
         const tag = L.marker([marker.lat, marker.lng], {
           icon: L.divIcon({
@@ -1224,6 +1219,20 @@ const App = () => {
       }).setView([102, 112], 3)
       L.imageOverlay('/map.svg', bounds).addTo(mapRef.current)
       setMarker(0)
+      mapRef.current.on('click', function () {
+        const tips = document.querySelectorAll('.m-tips')
+        if (!showTagName.current) {
+          // 获取所有 .m-tips 设置 visibility
+          tips.forEach((tip) => {
+            tip.setAttribute('style', 'visibility: visible')
+          })
+        } else {
+          tips.forEach((tip) => {
+            tip.setAttribute('style', 'visibility: hidden')
+          })
+        }
+        showTagName.current = !showTagName.current
+      })
     }
   }, [])
 
@@ -1253,12 +1262,16 @@ const App = () => {
         center
         focusTrapped={false}
       >
-        <h2>景区介绍</h2>
+        <h2>《“数”说中英街》</h2>
         <p className="mt-2 text-sm">
+          中英街，位于广东省深圳市盐田区沙头角街道与香港特别行政区北区交界处，背靠梧桐山，南临大鹏湾，由梧桐山流向大鹏湾的小河河床淤积而成，原名“鹭鹚径”，长约250米，宽约3—4米，深圳香港各占一半，街心以“界碑石”为界，与香港一街相处，需办理通行证才能进入“中英街”，故“中英街”被称作特区中的“特区”。
           <img className="w-full my-2" src="./post1.jpg" alt="中英街" />
-          各位旅客，大家好，欢迎来到中英街。
+          中英街社区面积0.179平方公里，总人口6077人。有“一界一墟一巷七街”。“一界”即深港边界，“一墟”即东和墟记忆街区，“一巷”即沙栏吓村特色客家窄巷，“七街”即穿插在东侧老建筑中的七条老街，有步行街、环城路、海傍街、横头街、碧海路等。主要建筑有入口广场、骑楼、街道转角处建筑、转角广场、榕树林荫道、回归广场、天后宫广场、滨海观景道、古塔公园、海滨绿水长廊和中英街雕塑墙，街边商店林立，体现出“一街两制”的历史景观和文化风情。
+          中英街拥有同根同源的深港共生文化、英杰荟萃的百年抗争文化和源远流长的客家传统文化，独具特色、交相辉映，是中国历史文化名街、中国民间艺术之乡。2012年6月8日，中英街被国家文化部、国家文物局评为“中国历史文化名街”；2004年，中英街被评为“深圳八景”之一，获评广东最受网络关注乡村研学目的地Top10”称号，是深圳市文化特色街区，更是深港民间文化交流的重要窗口。沙头角鱼灯舞、客家山歌、天后宝诞、九簋菜、麒麟舞等都是国家级、省市区级非物质文化遗产，吴氏宗祠、天后宫等为市级文物保护单位。
+          中英街素有“民间艺术之乡”的美称，麒麟舞、鱼灯舞、百人舞龙等民间艺术蜚声于世，深港两地居民舞鱼、舞龙不仅寄托了客家人与自然和谐相处、追求美好生活的情感，更是深港两地源远流长、血浓于水的文化纽带，牵系着深港两地居民的情怀。
           <img className="w-full my-2" src="./post2.png" alt="中英街" />
-          中英街拥有同根同源的深港共生文化、英杰荟萃的百年抗争文化和源远流长的客家传统文化，独具特色、交相辉映。中英街自改革开放以来逐渐成为闻名遐迩的“购物天堂”，是中国独有的“一街两制”人文历史景区，是中国历史文化名街、中国民间艺术之乡、“深圳八景”之一，是深圳市文化特色街区，更是深港民间文化交流的重要窗口。
+          中英街每年游客量可达到240万，平均每个月游客达20万左右，每年7、8月和12月是客流量最大的月份，每月游客最多可达30万左右，其中外地游客占比可达80%。本地游客周末来中英街的居多，大多来选择购买一些日常用品或者海边散步、休闲娱乐。周末每天接待游客可达1.7万人，其中本地游客5000人左右。
+          据我们的调查统计，中英街游客分布如下：购物游客人次占到游客总数的60%，游览景点的游客占30%，休闲娱乐的游客占10%。购物较多的占的游客30%，他们经常选择中英街较大的商场购物。据调查统计，中英街游客量较多的几家大型商场分别为华港商场、实惠百货、百年中英坊等。在中英街景点中，界碑、警世钟、浮雕墙的关注度最高，游客约占43%，其次是历史博物馆约占26%。休闲娱乐的游客中，有74%游览桥头街巷、品尝小吃、打卡等，21%来到了海边散步。
         </p>
       </Modal>
       {/* 路线推荐 */}
