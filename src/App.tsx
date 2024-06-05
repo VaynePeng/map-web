@@ -1222,7 +1222,7 @@ const App = () => {
         minZoom: 1,
         maxZoom: 3
       }).setView([102, 112], 3)
-      L.imageOverlay('/map.png', bounds).addTo(mapRef.current)
+      L.imageOverlay('/map.svg', bounds).addTo(mapRef.current)
       setMarker(0)
     }
   }, [])
