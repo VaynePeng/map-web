@@ -875,23 +875,23 @@ const line1 = [
     offset: -10
   },
   {
-    lat: 115,
+    lat: 120,
     lng: 170,
     offset: -10
   },
   {
-    lat: 128,
-    lng: 145,
+    lat: 132,
+    lng: 137,
     offset: -10
   },
   {
-    lat: 120,
-    lng: 125,
+    lat: 122,
+    lng: 115,
     offset: 3
   },
   {
-    lat: 100,
-    lng: 99,
+    lat: 103,
+    lng: 96,
     offset: 3
   },
   {
@@ -1096,6 +1096,14 @@ const App = () => {
     if (mapRef.current) {
       line.forEach((element, index) => {
         if (index > 0) {
+          // 每个点画一个圈
+          /* const circle = L.circle([element.lat, element.lng], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 1
+          }).addTo(mapRef.current as Map)
+          markerLayers.current.push(circle) */
           setTimeout(() => {
             const pre = line[index - 1]
             const midPoint = {
