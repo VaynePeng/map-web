@@ -17,7 +17,7 @@ interface Marker {
 const markers: Array<Marker> = [
   {
     id: 'zyjjb',
-    lat: 20,
+    lat: 10,
     lng: 113,
     width: 70,
     height: 65,
@@ -45,7 +45,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'lsbwg',
-    lat: 130,
+    lat: 135,
     lng: 110,
     width: 70,
     height: 65,
@@ -73,7 +73,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'gtgy',
-    lat: 52,
+    lat: 45,
     lng: 15,
     width: 70,
     height: 65,
@@ -157,7 +157,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'gjxq',
-    lat: 25,
+    lat: 18,
     lng: 105,
     width: 70,
     height: 65,
@@ -185,7 +185,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'qtj',
-    lat: 36,
+    lat: 30,
     lng: 90,
     width: 70,
     height: 65,
@@ -213,7 +213,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'lj',
-    lat: 35,
+    lat: 30,
     lng: 105,
     width: 70,
     height: 65,
@@ -549,7 +549,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'whq',
-    lat: 130,
+    lat: 138,
     lng: 165,
     width: 70,
     height: 65,
@@ -577,7 +577,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'db',
-    lat: 60,
+    lat: 62,
     lng: 55,
     width: 70,
     height: 65,
@@ -605,7 +605,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'thg',
-    lat: 98,
+    lat: 100,
     lng: 112,
     width: 70,
     height: 65,
@@ -633,7 +633,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'jsz',
-    lat: 128,
+    lat: 135,
     lng: 122,
     width: 70,
     height: 65,
@@ -661,7 +661,7 @@ const markers: Array<Marker> = [
   },
   {
     id: 'hbzd',
-    lat: 145,
+    lat: 153,
     lng: 95,
     width: 70,
     height: 65,
@@ -692,7 +692,7 @@ const markers: Array<Marker> = [
 const governmentMarkers: Array<Marker> = [
   {
     id: 'jg1',
-    lat: 41,
+    lat: 38,
     lng: 74,
     width: 70,
     height: 65,
@@ -1311,7 +1311,7 @@ const App = () => {
         minZoom: 1,
         maxZoom: 3
       }).setView([102, 112], 3)
-      L.imageOverlay('/map.svg', bounds).addTo(mapRef.current)
+      L.imageOverlay('/map.jpg', bounds).addTo(mapRef.current)
       setMarker(0)
       mapRef.current.on('click', function (e) {
         const { lat, lng } = e.latlng
