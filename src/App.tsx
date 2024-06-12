@@ -1122,14 +1122,6 @@ const App = () => {
     if (mapRef.current) {
       line.forEach((element, index) => {
         if (index > 0) {
-          // 每个点画一个圈
-          const circle = L.circle([element.lat, element.lng], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 1
-          }).addTo(mapRef.current as Map)
-          markerLayers.current.push(circle)
           setTimeout(() => {
             const pre = line[index - 1]
             const midPoint = {
