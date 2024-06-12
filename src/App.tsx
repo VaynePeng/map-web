@@ -923,12 +923,15 @@ const line1 = [
 // 2. 旅游观光路线-内地
 const line2 = [
   {
-    lat: 15,
-    lng: 110,
-    offset: 10
+    lat: 10,
+    lng: 110
   },
   {
-    lat: 32,
+    lat: 17,
+    lng: 99,
+  },
+  {
+    lat: 30,
     lng: 91,
     offset: 5
   },
@@ -952,8 +955,13 @@ const line2 = [
     offset: -8
   },
   {
-    lat: 140,
-    lng: 101,
+    lat: 142,
+    lng: 130,
+    offset: 10
+  },
+  {
+    lat: 148,
+    lng: 88,
     offset: 10
   },
   {
@@ -972,8 +980,8 @@ const line2 = [
     offset: 10
   },
   {
-    lat: 48,
-    lng: 12,
+    lat: 42,
+    lng: 8,
     offset: 2
   },
   {
@@ -982,12 +990,12 @@ const line2 = [
     offset: 2
   },
   {
-    lat: 31,
+    lat: 21,
     lng: 47,
     offset: 2
   },
   {
-    lat: 15,
+    lat: 12,
     lng: 90,
     offset: -10
   }
@@ -1000,12 +1008,17 @@ const line3 = [
     offset: 2
   },
   {
-    lat: 127,
+    lat: 130,
     lng: 144,
     offset: -10
   },
   {
-    lat: 145,
+    lat: 149,
+    lng: 117,
+    offset: -10
+  },
+  {
+    lat: 150,
     lng: 90,
     offset: 10
   },
@@ -1030,12 +1043,12 @@ const line3 = [
     offset: 2
   },
   {
-    lat: 30,
+    lat: 21,
     lng: 45,
     offset: 2
   },
   {
-    lat: 18,
+    lat: 10,
     lng: 90,
     offset: 2
   },
@@ -1051,9 +1064,18 @@ const line3 = [
   }
 ]
 const lineMapper = {
-  1: line1,
-  2: line2,
-  3: line3
+  1: {
+    color: 'red',
+    line: line1
+  },
+  2: {
+    color: 'orange',
+    line: line2
+  },
+  3: {
+    color: 'blue',
+    line: line3
+  }
 }
 
 const App = () => {
@@ -1083,9 +1105,13 @@ const App = () => {
 
   const interVal = useRef<number | null>(null)
   // 绘制路线
-  const drawLine = (
+  const drawLine = ({
+    color,
+    line
+  }: {
+    color: string
     line: Array<{ lat: number; lng: number; offset?: number }>
-  ) => {
+  }) => {
     if (interVal.current) {
       clearInterval(interVal.current)
     }
@@ -1097,13 +1123,13 @@ const App = () => {
       line.forEach((element, index) => {
         if (index > 0) {
           // 每个点画一个圈
-          /* const circle = L.circle([element.lat, element.lng], {
+          const circle = L.circle([element.lat, element.lng], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
             radius: 1
           }).addTo(mapRef.current as Map)
-          markerLayers.current.push(circle) */
+          markerLayers.current.push(circle)
           setTimeout(() => {
             const pre = line[index - 1]
             const midPoint = {
@@ -1117,7 +1143,7 @@ const App = () => {
                   : (pre.lng + element.lng) / 2
             }
             const pathOpts = {
-              color: 'red',
+              color,
               fill: false,
               dashArray: '10,10',
               dashOffset: `${offset}`
