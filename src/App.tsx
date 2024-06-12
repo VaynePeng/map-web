@@ -10,6 +10,8 @@ interface Marker {
   width: number
   height: number
   voice?: string
+  title?: string
+  image?: string
   content?: string
 }
 
@@ -22,6 +24,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/界碑.mp3',
+    title: '中英街界碑',
+    image: './文化路线/1中英街界碑.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街界碑</div>
@@ -50,6 +54,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/历史博物馆.mp3',
+    title: '中英街历史博物馆',
+    image: './文化路线/11中英街历史博物馆.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街历史博物馆</div>
@@ -78,6 +84,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/古塔公园.mp3',
+    title: '古塔公园',
+    image: './文化路线/13中英街古塔公园.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">古塔公园</div>
@@ -99,34 +107,6 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  /* {
-    id: 'mej',
-    lat: 66,
-    lng: 55,
-    width: 70,
-    height: 65,
-    voice: './voice/麦奀记.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">麦奀记忠记</div>
-        <div id="mej" class="m-body" style="display: none">
-          <div class="m-title">麦奀记忠记</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./文化路线/5麦奀记.jpg"
-              alt="麦奀记忠记"
-              title="麦奀记忠记"
-            />
-            <p class="m-text">
-              在大榕树下，也是桥头街的尽头，您将看到麦奀记忠记，始创于1920年，总店在香港中环永吉街，是名副其实的百年老店。这里环境好，店员服务态度好，镇店之宝“香港云吞面”和“鲜虾云吞面”受大众喜爱，港式牛杂、咖喱鱼蛋等风味小吃价格公道，首创黑松露云吞面、凤城鲜虾水饺面、传统忠记鲜虾云吞面等招牌美食，价格基本都在30元左右，真可谓轻轻松松便能大快朵颐啊
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
   {
     id: 'ydwbwg',
     lat: 90,
@@ -134,6 +114,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/鱼灯舞博物馆.mp3',
+    title: '鱼灯舞博物馆',
+    image: './文化路线/7鱼灯舞博物馆和鱼灯舞广场.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">鱼灯舞博物馆</div>
@@ -162,6 +144,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/古井乡情.mp3',
+    title: '古井乡情',
+    image: './文化路线/2古井乡情.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">古井乡情</div>
@@ -190,6 +174,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/桥头街.mp3',
+    title: '桥头街',
+    image: './文化路线/3桥头街.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">桥头街</div>
@@ -218,6 +204,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/良记.mp3',
+    title: '良记国际免税商场',
+    image: './购物路线/1良记国际免税.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">良记国际免税商场</div>
@@ -239,90 +227,6 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  /* {
-    id: 'ql',
-    lat: 43,
-    lng: 128,
-    width: 70,
-    height: 65,
-    voice: './voice/骑楼.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">中英街骑楼</div>
-        <div id="ql" class="m-body" style="display: none">
-          <div class="m-title">中英街骑楼</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./文化路线/9中英街骑楼.jpg"
-              alt="中英街骑楼"
-              title="中英街骑楼"
-            />
-            <p class="m-text">
-              电商直播基地往关口方向望去，热闹非常的中英街上大大小小的深港免税商店鳞次栉比地排列着，在深圳一侧，两层式高大的骑楼建筑群往关口延伸，建筑款式是岭南骑楼，骑楼的出现，给中英街增添了岭南建筑文化的气息
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
-  /* {
-    id: 'ltms',
-    lat: 40,
-    lng: 163,
-    width: 70,
-    height: 65,
-    voice: './voice/乐天.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">香港乐天免税</div>
-        <div id="ltms" class="m-body" style="display: none">
-          <div class="m-title">香港乐天免税</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./购物路线/2香港乐天国际免税店.jpg"
-              alt="香港乐天免税"
-              title="香港乐天免税"
-            />
-            <p class="m-text">
-              我们从古井沿着购物街往前走，便可看见位于香港一侧的香港乐天免税店,它成立于1980年，于业界首度引进卖场中的精品专柜分区概念，改变全球免税店的走向。1984-1994年期间，CHANEL等奢华品牌首次入驻免税店，造就免税事业全新典范。乐天免税店曾展开韩流行销，将韩国文化推向全世界，目前销售商品种类繁多，值得一逛
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
-  /* {
-    id: 'xgsx',
-    lat: 65,
-    lng: 148,
-    width: 70,
-    height: 65,
-    voice: './voice/手信.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">香港手信国际药妆和全港汇</div>
-        <div id="xgsx" class="m-body" style="display: none">
-          <div class="m-title">香港手信国际药妆和全港汇</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./购物路线/香港手信.jpg"
-              alt="香港手信国际药妆和全港汇"
-              title="香港手信国际药妆和全港汇"
-            />
-            <p class="m-text">
-              当您走至凉亭旁，您可以在深圳一侧的香港手信国际药妆和全港汇购物，主要售卖日常用品、化妆品、保健品和药品，样样俱全
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
   {
     id: 'llbh',
     lat: 60,
@@ -330,6 +234,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/玲玲百货.mp3',
+    title: '玲玲百货',
+    image: './购物路线/5玲玲百货.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">玲玲百货</div>
@@ -358,6 +264,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/联兴百货.mp3',
+    title: '联兴百货',
+    image: './购物路线/6联兴百货.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">联兴百货</div>
@@ -379,34 +287,6 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  /* {
-    id: 'trt',
-    lat: 75,
-    lng: 186,
-    width: 70,
-    height: 65,
-    voice: './voice/泰日台药店.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">泰日台药店</div>
-        <div id="trt" class="m-body" style="display: none">
-          <div class="m-title">泰日台药店</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./购物路线/7泰日台.jpg"
-              alt="泰日台药店"
-              title="泰日台药店"
-            />
-            <p class="m-text">
-              从联兴百货往博物馆方向走，进入视线的绿色门牌牌匾的泰日台也是香港一侧的老字号药店，1979年开始营业，至今已经营业43年，该店一开始做的便是街坊生意，专售泰国、日本以及台湾地区的药品，药品多达3000多种。店主药理知识丰富，不售假药，哪家孩子病了来买药，哪家人临时有需要，如果没带钱都可以先拿药走，过几天送钱过来就可以。除柜台外，该店的格局多年来持续不变，正如该店销售信念一样——初心不变
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
   {
     id: 'zyj',
     lat: 81,
@@ -414,6 +294,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/周养记百货.mp3',
+    title: '周养记百货',
+    image: './购物路线/10周养记.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">周养记百货</div>
@@ -442,6 +324,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/花木兰.mp3',
+    title: '花木兰',
+    image: './购物路线/9花木兰.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">花木兰</div>
@@ -470,6 +354,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/华港商场.mp3',
+    title: '华港商场',
+    image: './购物路线/3华港商场.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">华港商场</div>
@@ -491,34 +377,6 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  /* {
-    id: 'atls',
-    lat: 92,
-    lng: 166,
-    width: 70,
-    height: 65,
-    voice: './voice/全港汇奥特莱斯.mp3',
-    content: `
-        <div class="m-icon">
-        <div class="m-tips">全港汇奥特莱斯</div>
-        <div id="atls" class="m-body" style="display: none">
-          <div class="m-title">全港汇奥特莱斯</div>
-          <div class="m-content">
-            <img
-              class="m-img"
-              src="./购物路线/11全港汇奥特莱斯.jpg"
-              alt="全港汇奥特莱斯"
-              title="全港汇奥特莱斯"
-            />
-            <p class="m-text">
-              当您走至深港岗亭对面，就是全港汇奥特莱斯，里面除了卖各种进口零食、调味品、日用品，还开了Coach、MK、Adidas服装包包店，货真价实，店内工作人员礼貌热情，是购物的不二之选
-            </p>
-          </div>
-        </div>
-        <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
-      </div>
-    `
-  }, */
   {
     id: 'zbjd',
     lat: 108,
@@ -526,6 +384,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/中英街电商直播基地.mp3',
+    title: '中英街电商直播基地',
+    image: './购物路线/12中英街电商直播基地.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街电商直播基地</div>
@@ -554,6 +414,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/历史文化墙.mp3',
+    title: '中英街历史文化墙',
+    image: './文化路线/中英街历史文化墙.jpeg',
     content: `
         <div class="m-icon">
         <div class="m-tips">中英街历史文化墙</div>
@@ -582,6 +444,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/沙栏吓侵华日军碉堡.mp3',
+    title: '沙栏吓侵华日军碉堡',
+    image: './文化路线/4沙栏吓侵华日军碉堡.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">沙栏吓侵华日军碉堡</div>
@@ -610,6 +474,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/天后宫与吴氏宗祠.mp3',
+    title: '天后宫与吴氏宗祠',
+    image: './文化路线/6天后宫与吴氏宗祠.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">天后宫与吴氏宗祠</div>
@@ -638,6 +504,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/警世钟.mp3',
+    title: '警世钟',
+    image: './文化路线/10警世钟.jpg',
     content: `
         <div class="m-icon">
         <div class="m-tips">警世钟</div>
@@ -666,6 +534,8 @@ const markers: Array<Marker> = [
     width: 70,
     height: 65,
     voice: './voice/海滨栈道.mp3',
+    title: '海滨栈道',
+    image: './文化路线/12海滨栈道.jpeg',
     content: `
         <div class="m-icon">
         <div class="m-tips">海滨栈道</div>
@@ -928,7 +798,7 @@ const line2 = [
   },
   {
     lat: 17,
-    lng: 99,
+    lng: 99
   },
   {
     lat: 30,
@@ -1091,6 +961,9 @@ const App = () => {
   const [openIntroduceModal, setOpenIntroduceModal] = useState<boolean>(false)
   // 路线推荐
   const [openRouteModal, setOpenRouteModal] = useState<boolean>(false)
+  // 景点列表
+  const [openAttractionsModal, setOpenAttractionsModal] =
+    useState<boolean>(false)
   // 清空路线
   const clearLine = () => {
     markerLayers.current.forEach((layer) => {
@@ -1184,7 +1057,9 @@ const App = () => {
     {
       id: 'btn_scenic',
       background: 'url("./btn/but_scenic.png")',
-      onClick: () => {}
+      onClick: () => {
+        setOpenAttractionsModal(true)
+      }
     },
     {
       id: 'btn_shop',
@@ -1445,6 +1320,30 @@ const App = () => {
           <button className="mt-2 bg-blue-400 text-white px-4 py-2 rounded-md w-[250px]">
             加入一个队伍
           </button>
+        </div>
+      </Modal>
+      {/* 景点列表 */}
+      <Modal
+        open={openAttractionsModal}
+        onClose={() => setOpenAttractionsModal(false)}
+        center
+        focusTrapped={false}
+      >
+        <h2>景点列表</h2>
+        <div className="mt-2 text-sm grid grid-cols-2 gap-2 items-center justify-center">
+          {markers.map((marker) => (
+            <div key={marker.id} className="flex items-center justify-center" onClick={() => {
+              setOpenAttractionsModal(false)
+              mapRef.current?.setView([marker.lat, marker.lng], 3)
+            }}>
+              <img
+                className="w-12 h-12 mr-2 flex-none rounded-sm"
+                src={marker.image}
+                alt={marker.title}
+              />
+              <p className="flex-1 text-sm">{marker.title}</p>
+            </div>
+          ))}
         </div>
       </Modal>
       <ul className="fixed bottom-5 left-5 z-20 flex">

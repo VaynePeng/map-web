@@ -50,7 +50,8 @@
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: calc(100vw - 2.4rem);
+  max-width: 800px;
   position: absolute;
   bottom: 25px;
 }
@@ -64,13 +65,13 @@
   align-items: center;
 }
 .m-img {
-  width: 80px !important;
+  width: 30% !important;
   margin-right: 10px;
 }
 .m-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 10;
   overflow: hidden;
   text-overflow: ellipsis;
 }
