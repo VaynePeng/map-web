@@ -198,7 +198,7 @@ const markers: Array<Marker> = [
       </div>
     `
   },
-  {
+  /* {
     id: 'lj',
     lat: 30,
     lng: 105,
@@ -227,7 +227,7 @@ const markers: Array<Marker> = [
         <div class="m-tag"><i class="iconfont icon-18erji-2"></i></div>
       </div>
     `
-  },
+  }, */
   {
     id: 'llbh',
     lat: 60,
